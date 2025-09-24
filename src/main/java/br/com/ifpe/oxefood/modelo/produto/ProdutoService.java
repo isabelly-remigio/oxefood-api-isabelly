@@ -18,11 +18,26 @@ public class ProdutoService {
     }
 
     public List<Produto> listarTodos() {
-  
-        return reposity.findAll(); //SELECT * FROM cliente;
+
+        return reposity.findAll(); // SELECT * FROM cliente;
     }
+
     public Produto obterPorID(Long id) {
 
         return reposity.findById(id).get(); // SELECT * FROM cliente WHERE id = ?
+    }
+
+    @Transactional
+    public void update(Long id, Produto produtoAlterado) {
+
+       Produto produto = reposity.findById(id).get();
+       produto.setTitulo(produtoAlterado.getTitulo());
+       produto.setCodigo(produtoAlterado.getCodigo());
+       produto.setDescricao(produtoAlterado.getDescricao());
+       produto.setValorUnitario(produtoAlterado.getValorUnitario());
+       produto.setTempoEntregaMinimo(produtoAlterado.getTempoEntregaMinimo());
+       produto.setTempoEntregaMaximo(produtoAlterado.getTempoEntregaMaximo());
+        
+      reposity.save(produto);
     }
 }
