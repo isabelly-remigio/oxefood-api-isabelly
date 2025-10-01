@@ -1,10 +1,11 @@
 package br.com.ifpe.oxefood.modelo.produto;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
-import java.util.List;
 
 @Service
 public class ProdutoService {
@@ -30,17 +31,19 @@ public class ProdutoService {
     @Transactional
     public void update(Long id, Produto produtoAlterado) {
 
-       Produto produto = reposity.findById(id).get();
-       produto.setTitulo(produtoAlterado.getTitulo());
-       produto.setCodigo(produtoAlterado.getCodigo());
-       produto.setDescricao(produtoAlterado.getDescricao());
-       produto.setValorUnitario(produtoAlterado.getValorUnitario());
-       produto.setTempoEntregaMinimo(produtoAlterado.getTempoEntregaMinimo());
-       produto.setTempoEntregaMaximo(produtoAlterado.getTempoEntregaMaximo());
-        
-      reposity.save(produto);
-    }
+        Produto produto = reposity.findById(id).get();
+              produto.setCategoria(produtoAlterado.getCategoria());
+;
 
+        produto.setTitulo(produtoAlterado.getTitulo());
+        produto.setCodigo(produtoAlterado.getCodigo());
+        produto.setDescricao(produtoAlterado.getDescricao());
+        produto.setValorUnitario(produtoAlterado.getValorUnitario());
+        produto.setTempoEntregaMinimo(produtoAlterado.getTempoEntregaMinimo());
+        produto.setTempoEntregaMaximo(produtoAlterado.getTempoEntregaMaximo());
+
+        reposity.save(produto);
+    }
 
     @Transactional
     public void delete(Long id) {
