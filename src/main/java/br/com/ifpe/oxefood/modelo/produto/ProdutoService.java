@@ -40,4 +40,15 @@ public class ProdutoService {
         
       reposity.save(produto);
     }
+
+
+    @Transactional
+    public void delete(Long id) {
+
+        Produto produto = reposity.findById(id).get();
+        produto.setHabilitado(Boolean.FALSE);
+
+        reposity.save(produto);
+    }
+
 }

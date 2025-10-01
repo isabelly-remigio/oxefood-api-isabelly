@@ -53,5 +53,12 @@ public class EntregadorService {
 
     }
 
+    @Transactional
+    public void delete(Long id) {
 
+        Entregador entregador = reposity.findById(id).get();
+        entregador.setHabilitado(Boolean.FALSE);
+
+        reposity.save(entregador);
+    }
 }
