@@ -1,4 +1,5 @@
 package br.com.ifpe.oxefood.modelo.cliente;
+
 import org.hibernate.annotations.SQLRestriction;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,46 +12,46 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 // jpa 
-
 @Entity
 
 // sera criado uma tabela no banco de dados com o nome Cliente
-
-@Table(name = "Cliente")
+@Table(name = "enderecoCliente")
 
 // servi para acressentar uma restrição sql na entidade
-
 @SQLRestriction("habilitado = true")
 
 // lombok
-
 @Builder
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Cliente extends EntidadeAuditavel  {
-  
 
-   @OneToMany(mappedBy = "cliente", orphanRemoval = true, fetch = FetchType.EAGER)
-   private List<EnderecoCliente> enderecos;
+public class EnderecoCliente extends EntidadeAuditavel {
 
+    @JsonIgnore
+    @ManyToOne
+    private Cliente cliente;
 
-   @Column
-   private String nome;
+    @Column
+    private String rua;
 
-   @Column
-   private LocalDate dataNascimento;
+    @Column
+    private String numero;
 
-   @Column
-   private String cpf;
+    @Column
+    private String bairro;
+    @Column
+    private String cep;
 
-   @Column
-   private String foneCelular;
+    @Column
+    private String cidade;
 
-   @Column
-   private String foneFixo;
+    @Column
+    private String estado;
+
+    @Column
+    private String complemento;
 
 }
