@@ -1,15 +1,21 @@
 package br.com.ifpe.oxefood.modelo.cliente;
 
-import jakarta.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import jakarta.transaction.Transactional;
 
 
 @Service
 public class ClienteService {
     @Autowired
     private ClienteRepository repository;
+
+    @Autowired
+    private EnderecoClienteRepository enderecoClienteRepository;
 
     @Transactional // garante que se der algum erro, o banco volta ao estado anterior
     public Cliente save(Cliente cliente) {

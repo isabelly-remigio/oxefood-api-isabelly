@@ -1,14 +1,14 @@
-package br.com.ifpe.oxefood.modelo.cliente;
+package br.com.ifpe.oxefood.modelo.cidade;
+
 import java.time.LocalDate;
-import java.util.List;
 
 import org.hibernate.annotations.SQLRestriction;
 
+import br.com.ifpe.oxefood.modelo.estado.Estado;
 import br.com.ifpe.oxefood.util.entity.EntidadeAuditavel;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,14 +16,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-// jpa 
-
 @Entity
 
 // sera criado uma tabela no banco de dados com o nome Cliente
 
-@Table(name = "Cliente")
+@Table(name = "Cidade")
 
 // servi para acressentar uma restrição sql na entidade
 
@@ -36,26 +33,21 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Cliente extends EntidadeAuditavel  {
-  
 
-   @OneToMany(mappedBy = "cliente", orphanRemoval = true, fetch = FetchType.EAGER)
-   private List<EnderecoCliente> enderecos;
+public class Cidade extends EntidadeAuditavel {
 
+    @ManyToOne
+    private Estado estado;
 
-   @Column(nullable = false, length = 100)
-   private String nome;
+    @Column
+    private String nome;
 
-   @Column
-   private LocalDate dataNascimento;
-  
-   @Column(unique = true)
-   private String cpf;
+    @Column
+    private Integer qtdPopulacao;
 
-   @Column
-   private String foneCelular;
+    @Column
+    private Boolean ehCapital;
 
-   @Column
-   private String foneFixo;
-
+    @Column
+    private LocalDate dataFundacao;
 }
