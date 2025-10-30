@@ -30,7 +30,7 @@ public class FuncionarioService {
 
        for (Perfil perfil : funcionario.getUsuario().getRoles()) {
            perfil.setHabilitado(Boolean.TRUE);
-           perfilUsuarioRepository.save(perfil);
+           perfilUsuarioRepository.save(perfil) ;
        }
 
 
