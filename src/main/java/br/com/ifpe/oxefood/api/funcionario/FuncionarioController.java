@@ -31,16 +31,16 @@ public class FuncionarioController {
 
     @PostMapping
     public ResponseEntity<Funcionario> save(@RequestBody @Valid FuncionarioRequest request) {
-
+        // Construir o objeto Funcionario a partir do request
         Funcionario funcionarioNovo = request.build();
-
+// Atribuir perfis de acesso com base no tipo de funcionário
            if (funcionarioNovo.getTipo().equals(TipoFuncionario.ADMINISTRADOR)) {
                 funcionarioNovo.getUsuario().getRoles().add(new Perfil(Perfil.ROLE_FUNCIONARIO_ADMIN));
            } else if (funcionarioNovo.getTipo().equals(TipoFuncionario.OPERADOR)) {
                 funcionarioNovo.getUsuario().getRoles().add(new Perfil(Perfil.ROLE_FUNCIONARIO_USER));
            }
 
-
+// Salvar o funcionário usando o serviço
         Funcionario funcionario = funcionarioService.save(funcionarioNovo);
         return new ResponseEntity<Funcionario>(funcionario, HttpStatus.CREATED);
     }

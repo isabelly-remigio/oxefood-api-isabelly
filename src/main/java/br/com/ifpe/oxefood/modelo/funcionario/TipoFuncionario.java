@@ -1,7 +1,7 @@
 package br.com.ifpe.oxefood.modelo.funcionario;
 
 import com.fasterxml.jackson.annotation.JsonValue;
-
+// Tipo de funcionário no sistema.
 public enum TipoFuncionario {
 
     ADMINISTRADOR(

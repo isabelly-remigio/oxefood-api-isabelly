@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import br.com.ifpe.oxefood.util.exception.ProdutoException;
 import jakarta.transaction.Transactional;
 
+
 @Service
 public class ProdutoService {
     @Autowired
@@ -33,6 +34,36 @@ public class ProdutoService {
 
         return reposity.findById(id).get(); // SELECT * FROM cliente WHERE id = ?
     }
+
+
+    public List<Produto> filtrar(String codigo, String titulo, Long idCategoria) {
+
+       List<Produto> listaProdutos = reposity.findAll();
+
+       if ((codigo != null && !"".equals(codigo)) &&
+           (titulo == null || "".equals(titulo)) &&
+           (idCategoria == null)) {
+               listaProdutos = reposity.consultarPorCodigo(codigo);
+       } else if (
+           (codigo == null || "".equals(codigo)) &&
+           (titulo != null && !"".equals(titulo)) &&
+           (idCategoria == null)) {    
+               listaProdutos = reposity.findByTituloContainingIgnoreCaseOrderByTituloAsc(titulo);
+       } else if (
+           (codigo == null || "".equals(codigo)) &&
+           (titulo == null || "".equals(titulo)) &&
+           (idCategoria != null)) {
+               listaProdutos = reposity.consultarPorCategoria(idCategoria); 
+       } else if (
+           (codigo == null || "".equals(codigo)) &&
+           (titulo != null && !"".equals(titulo)) &&
+           (idCategoria != null)) {
+               listaProdutos = reposity.consultarPorTituloECategoria(titulo, idCategoria); 
+       }
+
+       return listaProdutos;
+}
+
 
     @Transactional
     public void update(Long id, Produto produtoAlterado) {
