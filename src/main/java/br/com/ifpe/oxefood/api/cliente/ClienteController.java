@@ -37,13 +37,13 @@ public class ClienteController {
        @PostMapping
     public ResponseEntity<Cliente> save(@RequestBody @Valid ClienteRequest clienteRequest, HttpServletRequest request) {
 
-        Cliente cliente = clienteService.save(clienteRequest.build(), usuarioService.obterUsuarioLogado(request));
-        return new ResponseEntity<Cliente>(cliente, HttpStatus.CREATED);
+        Cliente cliente = clienteService.save(clienteRequest.build(), usuarioService.obterUsuarioLogado(request)); // salvar o cliente passando o usuário logado
+        return new ResponseEntity<Cliente>(cliente, HttpStatus.CREATED); 
     }
 
 
     @GetMapping
-    public List<Cliente> listarTodos() {
+    public List<Cliente> listarTodos() { 
         return clienteService.listarTodos();
     }
 
@@ -78,7 +78,7 @@ public class ClienteController {
     public ResponseEntity<EnderecoCliente> atualizarEnderecoCliente(@PathVariable("enderecoId") Long enderecoId, @RequestBody EnderecoClienteRequest request) {
 
         EnderecoCliente endereco = clienteService.atualizarEnderecoCliente(enderecoId, request.build());
-        return new ResponseEntity<EnderecoCliente>(endereco, HttpStatus.OK);
+        return new ResponseEntity<EnderecoCliente>(endereco, HttpStatus.OK); 
     }
 
     @DeleteMapping("/endereco/{enderecoId}")

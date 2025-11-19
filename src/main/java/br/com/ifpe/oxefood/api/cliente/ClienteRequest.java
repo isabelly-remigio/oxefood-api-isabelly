@@ -30,19 +30,19 @@ public class ClienteRequest {
     @Email
     private String email;
 
-    @NotBlank(message = "A senha é de preenchimento obrigatório")
+    @NotBlank(message = "A senha é de preenchimento obrigatório") // Garante que a string não seja nula e não seja composta apenas por espaços em branco
     private String password;
 
-    @NotNull(message = "O Nome é de preenchimento obrigatório")
+    @NotNull(message = "O Nome é de preenchimento obrigatório") // Garante que o valor não seja null
     @NotEmpty(message = "O Nome é de preenchimento obrigatório")
     @Length(max = 100, message = "O Nome deverá ter no máximo {max} caracteres")
     private String nome;
 
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "dd/MM/yyyy") // define o formato da data
     private LocalDate dataNascimento;
 
     @NotBlank(message = "O CPF é de preenchimento obrigatório")
-    @CPF
+    @CPF // validação de cpf
     private String cpf;
 
     @Length(min = 8, max = 20, message = "O campo Fone tem que ter entre {min} e {max} caracteres")

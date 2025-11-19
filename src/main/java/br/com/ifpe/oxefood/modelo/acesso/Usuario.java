@@ -78,3 +78,13 @@ public class Usuario extends EntidadeNegocio implements UserDetails {
        return true;
    }
 }
+
+
+
+// AUTENTICAÇÃO – o usuário precisa esta cadastrado para poder ter acesso por login e senha
+// para acessar a plataforma.
+// AUTORIZAÇÃO – o usuário precisa ter permissão para acessar determinadas rotas, sem essa
+// autorização ele só consegue acessar determinadas rotas que se enquadrem no seu perfil de
+// usuário.
+// AUDITORIA – possível ver quem foi que fez determinada atividade como por exemplo, quem
+// editou um cadastro ou quem adicionou um produto.

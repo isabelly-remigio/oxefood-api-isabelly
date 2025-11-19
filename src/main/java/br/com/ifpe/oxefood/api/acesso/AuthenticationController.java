@@ -14,7 +14,7 @@ import br.com.ifpe.oxefood.modelo.acesso.UsuarioService;
 import br.com.ifpe.oxefood.modelo.seguranca.JwtService;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/auth") //Uma API RESTful é uma interface que usa métodos HTTP (GET, POST, PUT, DELETE) para manipular recursos de forma padronizada e simples, seguindo boas práticas de URI e independência de cliente.
 @CrossOrigin
 public class AuthenticationController {
 

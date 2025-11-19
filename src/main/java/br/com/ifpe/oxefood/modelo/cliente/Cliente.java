@@ -1,9 +1,9 @@
 package br.com.ifpe.oxefood.modelo.cliente;
 import java.time.LocalDate;
 import java.util.List;
-import org.hibernate.annotations.FetchMode;
 
 import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.SQLRestriction;
 
 import br.com.ifpe.oxefood.modelo.acesso.Usuario;
@@ -44,8 +44,8 @@ import lombok.Setter;
 public class Cliente extends EntidadeAuditavel  {
   
 
-   @OneToOne
-   @JoinColumn(nullable = false)
+   @OneToOne // relacionamento um para um com a entidade Usuario
+   @JoinColumn(nullable = false) // anotações vão ter efeitos no banco de dados
    private Usuario usuario;
 
    @OneToMany(mappedBy = "cliente", orphanRemoval = true, fetch = FetchType.EAGER)
@@ -59,11 +59,12 @@ public class Cliente extends EntidadeAuditavel  {
    @Column
    private LocalDate dataNascimento;
   
-   @Column(unique = true)
+   @Column(unique = true) // cpf unico no banco de dados
    private String cpf;
 
    @Column
-   private String foneCelular;
+   private String foneCelular; // @Length(min = 8, max = 30, message = "O campo Fixo deve ter entre {min} e
+ // {max} caracteres")
 
    @Column
    private String foneFixo;

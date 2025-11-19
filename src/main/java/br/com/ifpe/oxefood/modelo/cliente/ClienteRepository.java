@@ -2,7 +2,7 @@ package br.com.ifpe.oxefood.modelo.cliente;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ClienteRepository extends JpaRepository<Cliente, Long // tipo da entidade, tipo do id
+public interface ClienteRepository extends JpaRepository<Cliente, Long // tipo da entidade, tipo do id  /  porque esta dando extends no JpaRepository.
 > {
 
   
